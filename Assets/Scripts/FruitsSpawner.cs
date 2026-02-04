@@ -4,13 +4,23 @@ public class FruitsSpawner : MonoBehaviour
 {
     public GameObject[] FruitsPrefabs;
     public Transform SpawnPoint;
+    
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && GameManager.Instance.IsGameOver == false)
+        if (!GameManager.Instance.CanSpawn())
         {
-            // 数字を変えないといけない
-            int random = Random.Range(0, 3);
-            Instantiate(FruitsPrefabs[random],SpawnPoint.position,Quaternion.identity);
+            return;
         }
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Spawn();
+        }
+    }
+
+    private void Spawn()
+    {
+       Instantiate(FruitsPrefabs[Random.Range(0, 3)], SpawnPoint.position, Quaternion.identity);
+       GameManager.Instance.StartFruitFall();
     }
 }

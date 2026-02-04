@@ -15,7 +15,7 @@ public class ScoreManager : MonoBehaviour
     // Scoreの加算処理をします
     public void AddScore(int score)
     {
-        score += score;
-        ScoreText.text = score.ToString();
+        Score += score;
+        ScoreText.text = Score.ToString();
     }
 }
